@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ProiectCEBD.Models.COMPLEX_CAZARE>
+
+@{
+    ViewBag.Title = "AdminComplexuriCazare";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+
+    <p>
+        @Html.ActionLink("Create New", "CreareComplex", "Admin_Complexuri_Cazare")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DENUMIRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ADRESA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TELEFON)
+            </th>
+            <th>
+                ACTION
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DENUMIRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ADRESA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TELEFON)
+                </td>
+                <td>
+                    @{
+                        var numeComplexUrlFriendly = item.DENUMIRE.Replace(" ", "-").ToLower();
+                    }
+                    @Html.ActionLink("Edit", "EditareComplex", "Admin_Complexuri_Cazare",
+                    new { complex = numeComplexUrlFriendly, id = item.IDCOMPLEXCAZARE }, null)
+                    @Html.ActionLink("Details", "Details", new { numecomplex = numeComplexUrlFriendly, id = item.IDCOMPLEXCAZARE })
+                    @Html.ActionLink("Delete", "StergereComplex", "Admin_Complexuri_Cazare",
+                    new { id = item.IDCOMPLEXCAZARE }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

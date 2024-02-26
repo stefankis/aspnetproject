@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProiectModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CAMERE">
+    <Key>
+      <PropertyRef Name="IDCAMERA" />
+    </Key>
+    <Property Name="IDCAMERA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" />
+    <Property Name="DENUMIRE" Type="varchar2" MaxLength="255" />
+    <Property Name="CAPACITATE" Type="number" Precision="38" Scale="0" />
+    <Property Name="DISPONIBILITATE" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="CLIENTI">
+    <Key>
+      <PropertyRef Name="IDCLIENT" />
+    </Key>
+    <Property Name="IDCLIENT" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NUME" Type="varchar2" MaxLength="255" />
+    <Property Name="TELEFON" Type="varchar2" MaxLength="255" />
+    <Property Name="PRENUME" Type="varchar2" MaxLength="255" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="COMPLEX_CAZARE">
+    <Key>
+      <PropertyRef Name="IDCOMPLEXCAZARE" />
+    </Key>
+    <Property Name="IDCOMPLEXCAZARE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADRESA" Type="varchar2" MaxLength="255" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="255" />
+    <Property Name="TELEFON" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FACILITATI">
+    <Key>
+      <PropertyRef Name="IDFACILITATE" />
+    </Key>
+    <Property Name="IDFACILITATE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="varchar2" MaxLength="255" />
+    <Property Name="DESCRIERE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="IDREVIEW" />
+    </Key>
+    <Property Name="IDREVIEW" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" />
+    <Property Name="IDCLIENTE" Type="number" Precision="38" Scale="0" />
+    <Property Name="RATING" Type="number" Precision="38" Scale="0" />
+    <Property Name="DATA" Type="date" />
+    <Property Name="NUMEAUTOR" Type="varchar2" MaxLength="255" />
+    <Property Name="DESCRIERE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="REZERVARI">
+    <Key>
+      <PropertyRef Name="IDREZERVARI" />
+    </Key>
+    <Property Name="IDREZERVARI" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" />
+    <Property Name="DATASOSIRE" Type="date" />
+    <Property Name="DATAPLECARE" Type="date" />
+    <Property Name="NUMARPERSOANE" Type="number" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="REZERVARI_HAS_CLIENTI">
+    <Key>
+      <PropertyRef Name="IDREZERVARI" />
+      <PropertyRef Name="IDCLIENT" />
+    </Key>
+    <Property Name="IDREZERVARI" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDCLIENT" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SERVICII_SUPLIMENTARE">
+    <Key>
+      <PropertyRef Name="IDSERVICIU" />
+    </Key>
+    <Property Name="IDSERVICIU" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="varchar2" MaxLength="255" />
+    <Property Name="DESCRIERE" Type="varchar2" MaxLength="255" />
+    <Property Name="PRET" Type="varchar2" MaxLength="255" />
+    <Property Name="DISPONIBILITATE" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="TIPURI_UNITATI_DE_CAZARE">
+    <Key>
+      <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+    </Key>
+    <Property Name="IDTIPURIUNITATICAZARE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="varchar2" MaxLength="255" />
+    <Property Name="DESCRIERE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UNITATI_DE_CAZARE">
+    <Key>
+      <PropertyRef Name="IDUNITATICAZARE" />
+    </Key>
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDCOMPLEXCAZARE" Type="number" Precision="38" Scale="0" />
+    <Property Name="IDTIPURIUNITATICAZARE" Type="number" Precision="38" Scale="0" />
+    <Property Name="NUME" Type="varchar2" MaxLength="255" />
+    <Property Name="PRET" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UNITATI_HAS_FACILITATI">
+    <Key>
+      <PropertyRef Name="IDUNITATICAZARE" />
+      <PropertyRef Name="IDFACILITATE" />
+    </Key>
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDFACILITATE" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UNITATI_HAS_SERVICII">
+    <Key>
+      <PropertyRef Name="IDUNITATICAZARE" />
+      <PropertyRef Name="IDSERVICIU" />
+    </Key>
+    <Property Name="IDUNITATICAZARE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDSERVICIU" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="SYS_C007082">
+    <End Role="COMPLEX_CAZARE" Type="Self.COMPLEX_CAZARE" Multiplicity="0..1" />
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPLEX_CAZARE">
+        <PropertyRef Name="IDCOMPLEXCAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDCOMPLEXCAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007083">
+    <End Role="TIPURI_UNITATI_DE_CAZARE" Type="Self.TIPURI_UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPURI_UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007088">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="1" />
+    <End Role="UNITATI_HAS_FACILITATI" Type="Self.UNITATI_HAS_FACILITATI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_HAS_FACILITATI">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007089">
+    <End Role="FACILITATI" Type="Self.FACILITATI" Multiplicity="1" />
+    <End Role="UNITATI_HAS_FACILITATI" Type="Self.UNITATI_HAS_FACILITATI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACILITATI">
+        <PropertyRef Name="IDFACILITATE" />
+      </Principal>
+      <Dependent Role="UNITATI_HAS_FACILITATI">
+        <PropertyRef Name="IDFACILITATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007091">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="1" />
+    <End Role="UNITATI_HAS_SERVICII" Type="Self.UNITATI_HAS_SERVICII" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_HAS_SERVICII">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007092">
+    <End Role="SERVICII_SUPLIMENTARE" Type="Self.SERVICII_SUPLIMENTARE" Multiplicity="1" />
+    <End Role="UNITATI_HAS_SERVICII" Type="Self.UNITATI_HAS_SERVICII" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICII_SUPLIMENTARE">
+        <PropertyRef Name="IDSERVICIU" />
+      </Principal>
+      <Dependent Role="UNITATI_HAS_SERVICII">
+        <PropertyRef Name="IDSERVICIU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007095">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="REZERVARI" Type="Self.REZERVARI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="REZERVARI">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007097">
+    <End Role="REZERVARI" Type="Self.REZERVARI" Multiplicity="1" />
+    <End Role="REZERVARI_HAS_CLIENTI" Type="Self.REZERVARI_HAS_CLIENTI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REZERVARI">
+        <PropertyRef Name="IDREZERVARI" />
+      </Principal>
+      <Dependent Role="REZERVARI_HAS_CLIENTI">
+        <PropertyRef Name="IDREZERVARI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007098">
+    <End Role="CLIENTI" Type="Self.CLIENTI" Multiplicity="1" />
+    <End Role="REZERVARI_HAS_CLIENTI" Type="Self.REZERVARI_HAS_CLIENTI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTI">
+        <PropertyRef Name="IDCLIENT" />
+      </Principal>
+      <Dependent Role="REZERVARI_HAS_CLIENTI">
+        <PropertyRef Name="IDCLIENT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007100">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007101">
+    <End Role="CLIENTI" Type="Self.CLIENTI" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTI">
+        <PropertyRef Name="IDCLIENT" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="IDCLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007104">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="CAMERE" Type="Self.CAMERE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="CAMERE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProiectModelStoreContainer">
+    <EntitySet Name="CAMERE" EntityType="Self.CAMERE" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="CLIENTI" EntityType="Self.CLIENTI" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="COMPLEX_CAZARE" EntityType="Self.COMPLEX_CAZARE" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="FACILITATI" EntityType="Self.FACILITATI" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="REVIEW" EntityType="Self.REVIEW" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="REZERVARI" EntityType="Self.REZERVARI" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="REZERVARI_HAS_CLIENTI" EntityType="Self.REZERVARI_HAS_CLIENTI" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="SERVICII_SUPLIMENTARE" EntityType="Self.SERVICII_SUPLIMENTARE" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="TIPURI_UNITATI_DE_CAZARE" EntityType="Self.TIPURI_UNITATI_DE_CAZARE" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="UNITATI_DE_CAZARE" EntityType="Self.UNITATI_DE_CAZARE" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="UNITATI_HAS_FACILITATI" EntityType="Self.UNITATI_HAS_FACILITATI" Schema="STEFAN" store:Type="Tables" />
+    <EntitySet Name="UNITATI_HAS_SERVICII" EntityType="Self.UNITATI_HAS_SERVICII" Schema="STEFAN" store:Type="Tables" />
+    <AssociationSet Name="SYS_C007082" Association="Self.SYS_C007082">
+      <End Role="COMPLEX_CAZARE" EntitySet="COMPLEX_CAZARE" />
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007083" Association="Self.SYS_C007083">
+      <End Role="TIPURI_UNITATI_DE_CAZARE" EntitySet="TIPURI_UNITATI_DE_CAZARE" />
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007088" Association="Self.SYS_C007088">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="UNITATI_HAS_FACILITATI" EntitySet="UNITATI_HAS_FACILITATI" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007089" Association="Self.SYS_C007089">
+      <End Role="FACILITATI" EntitySet="FACILITATI" />
+      <End Role="UNITATI_HAS_FACILITATI" EntitySet="UNITATI_HAS_FACILITATI" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007091" Association="Self.SYS_C007091">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="UNITATI_HAS_SERVICII" EntitySet="UNITATI_HAS_SERVICII" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007092" Association="Self.SYS_C007092">
+      <End Role="SERVICII_SUPLIMENTARE" EntitySet="SERVICII_SUPLIMENTARE" />
+      <End Role="UNITATI_HAS_SERVICII" EntitySet="UNITATI_HAS_SERVICII" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007095" Association="Self.SYS_C007095">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="REZERVARI" EntitySet="REZERVARI" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007097" Association="Self.SYS_C007097">
+      <End Role="REZERVARI" EntitySet="REZERVARI" />
+      <End Role="REZERVARI_HAS_CLIENTI" EntitySet="REZERVARI_HAS_CLIENTI" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007098" Association="Self.SYS_C007098">
+      <End Role="CLIENTI" EntitySet="CLIENTI" />
+      <End Role="REZERVARI_HAS_CLIENTI" EntitySet="REZERVARI_HAS_CLIENTI" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007100" Association="Self.SYS_C007100">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007101" Association="Self.SYS_C007101">
+      <End Role="CLIENTI" EntitySet="CLIENTI" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007104" Association="Self.SYS_C007104">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="CAMERE" EntitySet="CAMERE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

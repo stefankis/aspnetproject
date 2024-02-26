@@ -1,0 +1,135 @@
+﻿@model ProiectCEBD.Models.UNITATI_DE_CAZARE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@functions {
+    private string ConvertToTitleCase(string str)
+    {
+        if (string.IsNullOrEmpty(str))
+        {
+            return str;
+        }
+
+        var words = str.Split('-');
+        for (int i = 1; i < words.Length; i++)
+        {
+            if (words[i].Length > 0)
+            {
+                words[i] = words[i].Substring(0, 1).ToUpper() + words[i].Substring(1).ToLower();
+            }
+        }
+
+        return words[1];
+    }
+
+    private string EditUnitateTitle(string title)
+    {
+        if (string.IsNullOrEmpty(title))
+        {
+            return title;
+        }
+
+        var words = title.Split(' ');
+        return words[1];
+    }
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+    <div>
+        <h4>Informații despre unitatea de cazare @EditUnitateTitle(@Html.DisplayFor(model => model.NUME).ToString()) din cadrul complexului @ConvertToTitleCase(ViewBag.DenumireComplex.ToString())</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NUME)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NUME)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PRET)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRET)
+            </dd>
+
+        </dl>
+        <br />
+        <h4>Camere disponibile în @Html.DisplayFor(model => model.NUME)</h4>
+        <hr />
+
+        <p>
+            @Html.ActionLink("Create New", "CreareCamera", "Admin_Complexuri_Cazare",
+            new { complex = ViewBag.DenumireComplex.Replace(" ", "-").ToLower(), unitate = ViewBag.DenumireUnitate.Replace(" ", "-").ToLower(), id = Model.IDUNITATICAZARE }, null)
+        </p>
+
+        <table class="table">
+            <tr>
+                <th>Denumire</th>
+                <th><center>Capacitate</center></th>
+                <th><center>Disponibilitate</center></th>
+                <th><center>Action</center></th>
+            </tr>
+            @foreach (var camera in ViewBag.CamereUnitate)
+            {
+                <tr>
+                    <td>@camera.DENUMIRE</td>
+                    <td><center>@camera.CAPACITATE</center></td>
+                    <td><center>@camera.DISPONIBILITATE</center></td>
+                    <td>
+                        <center>
+                            @{
+                                var numeComplexUrlFriendly = ViewBag.DenumireComplex.Replace(" ", "-").ToLower();
+                                var numeUnitateUrlFriendly = Model.NUME.Replace(" ", "-").ToLower();
+                                var numeCameraUrlFriendly = camera.DENUMIRE.Replace(" ", "-").ToLower();
+                            }
+                            @Html.ActionLink("Edit", "EditareCamera", "Admin_Complexuri_Cazare",
+                            new { complex = numeComplexUrlFriendly, unitate = numeUnitateUrlFriendly, camera = numeCameraUrlFriendly, id = camera.IDCAMERA }, null)
+                            @Html.ActionLink("Details", "Details", new { id = camera.IDCAMERA }) |
+                            @Html.ActionLink("Delete", "StergereCamera", "Admin_Complexuri_Cazare",
+                            new { complex = numeComplexUrlFriendly, unitate = numeUnitateUrlFriendly, id = camera.IDCAMERA }, null)
+
+                        </center>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Complex Page", "Details", new { numecomplex = ViewBag.DenumireComplex, id = ViewBag.IDComplex })
+    </p>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model ProiectCEBD.Models.CAMERE
+
+@{
+    ViewBag.Title = "Confirmare Ștergere Camera";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+
+    <h2>Confirmare Ștergere Camera</h2> 
+
+    <p>Sunteți sigur că doriți să ștergeți camera cu numele: @Model.DENUMIRE?</p>
+
+    @using (Html.BeginForm("StergereCameraConfirmare", "Admin_Unitati_Cazare", new { id = Model.DENUMIRE }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Confirmă Ștergerea" class="btn btn-danger" />
+        @Html.ActionLink("Anulează", "Index", "Admin_Unitati_Cazare", null, new { @class = "btn btn-default" })
+    }
+</div>

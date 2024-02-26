@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProiectModelStoreContainer" CdmEntityContainer="ProiectEntities">
+    <EntitySetMapping Name="CAMEREs">
+      <EntityTypeMapping TypeName="ProiectModel.CAMERE">
+        <MappingFragment StoreEntitySet="CAMERE">
+          <ScalarProperty Name="IDCAMERA" ColumnName="IDCAMERA" />
+          <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+          <ScalarProperty Name="DENUMIRE" ColumnName="DENUMIRE" />
+          <ScalarProperty Name="CAPACITATE" ColumnName="CAPACITATE" />
+          <ScalarProperty Name="DISPONIBILITATE" ColumnName="DISPONIBILITATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTIs">
+      <EntityTypeMapping TypeName="ProiectModel.CLIENTI">
+        <MappingFragment StoreEntitySet="CLIENTI">
+          <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+          <ScalarProperty Name="NUME" ColumnName="NUME" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPLEX_CAZARE">
+      <EntityTypeMapping TypeName="ProiectModel.COMPLEX_CAZARE">
+        <MappingFragment StoreEntitySet="COMPLEX_CAZARE">
+          <ScalarProperty Name="IDCOMPLEXCAZARE" ColumnName="IDCOMPLEXCAZARE" />
+          <ScalarProperty Name="DENUMIRE" ColumnName="DENUMIRE" />
+          <ScalarProperty Name="ADRESA" ColumnName="ADRESA" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACILITATIs">
+      <EntityTypeMapping TypeName="ProiectModel.FACILITATI">
+        <MappingFragment StoreEntitySet="FACILITATI">
+          <ScalarProperty Name="IDFACILITATE" ColumnName="IDFACILITATE" />
+          <ScalarProperty Name="DENUMIRE" ColumnName="DENUMIRE" />
+          <ScalarProperty Name="DESCRIERE" ColumnName="DESCRIERE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REVIEWs">
+      <EntityTypeMapping TypeName="ProiectModel.REVIEW">
+        <MappingFragment StoreEntitySet="REVIEW">
+          <ScalarProperty Name="IDREVIEW" ColumnName="IDREVIEW" />
+          <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+          <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+          <ScalarProperty Name="RATING" ColumnName="RATING" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="NUMEAUTOR" ColumnName="NUMEAUTOR" />
+          <ScalarProperty Name="DESCRIERE" ColumnName="DESCRIERE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REZERVARIs">
+      <EntityTypeMapping TypeName="ProiectModel.REZERVARI">
+        <MappingFragment StoreEntitySet="REZERVARI">
+          <ScalarProperty Name="IDREZERVARI" ColumnName="IDREZERVARI" />
+          <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+          <ScalarProperty Name="DATASOSIRE" ColumnName="DATASOSIRE" />
+          <ScalarProperty Name="DATAPLECARE" ColumnName="DATAPLECARE" />
+          <ScalarProperty Name="NUMARPERSOANE" ColumnName="NUMARPERSOANE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICII_SUPLIMENTARE">
+      <EntityTypeMapping TypeName="ProiectModel.SERVICII_SUPLIMENTARE">
+        <MappingFragment StoreEntitySet="SERVICII_SUPLIMENTARE">
+          <ScalarProperty Name="IDSERVICIU" ColumnName="IDSERVICIU" />
+          <ScalarProperty Name="DENUMIRE" ColumnName="DENUMIRE" />
+          <ScalarProperty Name="DESCRIERE" ColumnName="DESCRIERE" />
+          <ScalarProperty Name="PRET" ColumnName="PRET" />
+          <ScalarProperty Name="DISPONIBILITATE" ColumnName="DISPONIBILITATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPURI_UNITATI_DE_CAZARE">
+      <EntityTypeMapping TypeName="ProiectModel.TIPURI_UNITATI_DE_CAZARE">
+        <MappingFragment StoreEntitySet="TIPURI_UNITATI_DE_CAZARE">
+          <ScalarProperty Name="IDTIPURIUNITATICAZARE" ColumnName="IDTIPURIUNITATICAZARE" />
+          <ScalarProperty Name="DENUMIRE" ColumnName="DENUMIRE" />
+          <ScalarProperty Name="DESCRIERE" ColumnName="DESCRIERE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UNITATI_DE_CAZARE">
+      <EntityTypeMapping TypeName="ProiectModel.UNITATI_DE_CAZARE">
+        <MappingFragment StoreEntitySet="UNITATI_DE_CAZARE">
+          <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+          <ScalarProperty Name="IDCOMPLEXCAZARE" ColumnName="IDCOMPLEXCAZARE" />
+          <ScalarProperty Name="IDTIPURIUNITATICAZARE" ColumnName="IDTIPURIUNITATICAZARE" />
+          <ScalarProperty Name="NUME" ColumnName="NUME" />
+          <ScalarProperty Name="PRET" ColumnName="PRET" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="REZERVARI_HAS_CLIENTI" TypeName="ProiectModel.REZERVARI_HAS_CLIENTI" StoreEntitySet="REZERVARI_HAS_CLIENTI">
+      <EndProperty Name="REZERVARI">
+        <ScalarProperty Name="IDREZERVARI" ColumnName="IDREZERVARI" />
+      </EndProperty>
+      <EndProperty Name="CLIENTI">
+        <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UNITATI_HAS_FACILITATI" TypeName="ProiectModel.UNITATI_HAS_FACILITATI" StoreEntitySet="UNITATI_HAS_FACILITATI">
+      <EndProperty Name="UNITATI_DE_CAZARE">
+        <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+      </EndProperty>
+      <EndProperty Name="FACILITATI">
+        <ScalarProperty Name="IDFACILITATE" ColumnName="IDFACILITATE" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UNITATI_HAS_SERVICII" TypeName="ProiectModel.UNITATI_HAS_SERVICII" StoreEntitySet="UNITATI_HAS_SERVICII">
+      <EndProperty Name="UNITATI_DE_CAZARE">
+        <ScalarProperty Name="IDUNITATICAZARE" ColumnName="IDUNITATICAZARE" />
+      </EndProperty>
+      <EndProperty Name="SERVICII_SUPLIMENTARE">
+        <ScalarProperty Name="IDSERVICIU" ColumnName="IDSERVICIU" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

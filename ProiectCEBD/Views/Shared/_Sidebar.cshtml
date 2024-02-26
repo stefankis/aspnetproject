@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "_Sidebar";
+}
+
+<div id="sidebar" style="border: 1px solid #ddd; padding: 10px;">
+    <center><h1>Guest Home</h1></center>
+    <center>~ Your Home Admin Panel ~</center>
+    </br >
+    <ul>
+        <li>@Html.ActionLink("Complexuri de cazare", "Index", "Admin_Complexuri_Cazare")</li>
+        <li>@Html.ActionLink("Unitati de cazare", "Index", "Admin_Unitati_Cazare")</li>
+        <li>@Html.ActionLink("Tipuri unitati de cazare", "Index", "Admin_Tipuri_Unitati_Cazare")</li>
+        <li>@Html.ActionLink("Camere", "Index", "Admin_Camere")</li>
+    </ul>
+</div>
+
+

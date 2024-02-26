@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProiectCEBD.Models.CAMERE>
+
+@{
+    ViewBag.Title = "Camere";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+
+    @using (Html.BeginForm("Index", "Admin_Camere", FormMethod.Get))
+    {
+        <label for="capacitateSelectata">Selectați Capacitatea:</label>
+        @Html.DropDownList("capacitateSelectata", ViewBag.CapacitatiUnice as SelectList, "Toate", new { @class = "form-control" })
+        <input type="submit" value="Aplică Filtrarea" class="btn btn-primary" />
+    }
+
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DENUMIRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAPACITATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DISPONIBILITATE)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DENUMIRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CAPACITATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DISPONIBILITATE)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

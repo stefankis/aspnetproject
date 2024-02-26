@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Login Page";
+}
+
+<style>
+    .center-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh; /* Full height of the viewport */
+    }
+
+    .login-container {
+        width: 300px; /* Or any other width */
+    }
+
+    .login-container .btn {
+        margin-top: 10px;
+    }
+
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+</style>
+
+<div class="center-screen">
+    <div class="login-container">
+        <h1>Login</h1>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="Username">Username:</label>
+                @Html.TextBox("Username", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                @Html.Password("Password", null, new { @class = "form-control" })
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary" />
+        }
+        @if (ViewBag.LoginError != null)
+        {
+            <div class="alert alert-danger">@ViewBag.LoginError</div>
+        }
+    </div>
+</div>

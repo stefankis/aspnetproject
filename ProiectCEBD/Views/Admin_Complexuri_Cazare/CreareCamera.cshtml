@@ -1,0 +1,144 @@
+﻿@model ProiectCEBD.Models.CAMERE
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IDCAMERA)
+        @Html.HiddenFor(model => model.IDUNITATICAZARE)
+
+        <div class="form-horizontal">
+            <h4>TIPURI_UNITATI_DE_CAZARE</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <dl class="dl-horizontal">
+                    <dt>
+                        IDCAMERA
+                    </dt>
+
+                    <dd>
+                        @if (Model.IDCAMERA != null)
+                        {
+                            @Convert.ToInt32(Model.IDCAMERA)
+                        }
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="form-group">
+                <dl class="dl-horizontal">
+                    <dt>
+                        IDCOMPLEX
+                    </dt>
+
+                    <dd>
+                        @if (ViewBag.IDComplex != null)
+                        {
+                            @Convert.ToInt32(ViewBag.IDComplex)
+                        }
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="form-group">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IDUNITATICAZARE)
+                    </dt>
+
+                    <dd>
+                        @if (Model.IDUNITATICAZARE != null)
+                        {
+                            @Convert.ToInt32(Model.IDUNITATICAZARE)
+                        }
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DENUMIRE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DENUMIRE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DENUMIRE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CAPACITATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CAPACITATE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CAPACITATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DISPONIBILITATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.DISPONIBILITATE,
+                        new SelectList(new List<Object>
+                        {
+                            new { value = "T", text = "Da" },
+                            new { value = "F", text = "Nu" }
+                        },
+                        "value", "text", Model.DISPONIBILITATE),
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DISPONIBILITATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @{
+            var numeComplexUrlFriendly = ViewBag.DenumireComplex.Replace(" ", "-").ToLower();
+            var numeUnitateUrlFriendly = ViewBag.DenumireUnitate.Replace(" ", "-").ToLower();
+        }
+
+        @Html.ActionLink("Back to List", "VizualizareCamere", "Admin_Complexuri_Cazare",
+        new { complex = numeComplexUrlFriendly, unitate = numeUnitateUrlFriendly, idUnitate = Model.IDUNITATICAZARE }, null)
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

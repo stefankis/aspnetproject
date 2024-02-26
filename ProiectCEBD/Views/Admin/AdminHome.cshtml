@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "AdminHome";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .admin-panel-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="admin-panel-content">
+    <h2>AdminHome</h2>
+</div>

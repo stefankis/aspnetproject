@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ProiectCEBD.Models.UNITATI_DE_CAZARE>
+
+@{
+    ViewBag.Title = "UnitatiCazare";
+}
+
+<style>
+    .container {
+        max-width: 100vw !important;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        display: flex;
+        height: 100vh;
+        column-gap: 20px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #sidebar {
+        width: 20vw;
+    }
+
+    .complexuri-cazare-content {
+        padding-top: 20px;
+        width: 80vw;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+</style>
+
+@Html.Partial("_Sidebar")
+<div class="complexuri-cazare-content">
+    <p>
+        @Html.ActionLink("Create New", "CreareUnitate", "Admin_Unitati_Cazare")
+    </p>
+
+    @using (Html.BeginForm("Index", "Admin_Unitati_Cazare", FormMethod.Get))
+    {
+        <label for="idComplexCazare">Selectați Complexul de Cazare:</label>
+        @Html.DropDownList("idComplexCazare", ViewBag.IDComplexCazare as SelectList, "Toate Unitățile de Cazare", new { @class = "form-control" })
+        <input type="submit" value="Aplică Filtrarea" class="btn btn-primary" />
+    }
+
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NUME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRET)
+            </th>
+            <th>
+                ACTION
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NUME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRET)
+                </td>
+                <td>
+                    @{
+                        var numeUnitateUrlFriendly = item.NUME.Replace(" ", "-").ToLower();
+                    }
+                    @Html.ActionLink("Edit", "EditareUnitate", "Admin_Unitati_Cazare",
+                    new { unitate = numeUnitateUrlFriendly, id = item.IDUNITATICAZARE }, null)
+                    @Html.ActionLink("Delete", "StergereUnitate", "Admin_Unitati_Cazare",
+                    new { id = item.IDUNITATICAZARE }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

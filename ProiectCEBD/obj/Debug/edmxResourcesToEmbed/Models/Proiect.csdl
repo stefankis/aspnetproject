@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProiectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CAMERE">
+    <Key>
+      <PropertyRef Name="IDCAMERA" />
+    </Key>
+    <Property Name="IDCAMERA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DENUMIRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITATE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DISPONIBILITATE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.SYS_C007104" FromRole="CAMERE" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="CLIENTI">
+    <Key>
+      <PropertyRef Name="IDCLIENT" />
+    </Key>
+    <Property Name="IDCLIENT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NUME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFON" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PRENUME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="REVIEWs" Relationship="Self.SYS_C007101" FromRole="CLIENTI" ToRole="REVIEW" />
+    <NavigationProperty Name="REZERVARIs" Relationship="Self.REZERVARI_HAS_CLIENTI" FromRole="CLIENTI" ToRole="REZERVARI" />
+  </EntityType>
+  <EntityType Name="COMPLEX_CAZARE">
+    <Key>
+      <PropertyRef Name="IDCOMPLEXCAZARE" />
+    </Key>
+    <Property Name="IDCOMPLEXCAZARE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ADRESA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFON" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.SYS_C007082" FromRole="COMPLEX_CAZARE" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="FACILITATI">
+    <Key>
+      <PropertyRef Name="IDFACILITATE" />
+    </Key>
+    <Property Name="IDFACILITATE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIERE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.UNITATI_HAS_FACILITATI" FromRole="FACILITATI" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="IDREVIEW" />
+    </Key>
+    <Property Name="IDREVIEW" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IDCLIENTE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="RATING" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DATA" Type="DateTime" />
+    <Property Name="NUMEAUTOR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIERE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CLIENTI" Relationship="Self.SYS_C007101" FromRole="REVIEW" ToRole="CLIENTI" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.SYS_C007100" FromRole="REVIEW" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="REZERVARI">
+    <Key>
+      <PropertyRef Name="IDREZERVARI" />
+    </Key>
+    <Property Name="IDREZERVARI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DATASOSIRE" Type="DateTime" />
+    <Property Name="DATAPLECARE" Type="DateTime" />
+    <Property Name="NUMARPERSOANE" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.SYS_C007095" FromRole="REZERVARI" ToRole="UNITATI_DE_CAZARE" />
+    <NavigationProperty Name="CLIENTIs" Relationship="Self.REZERVARI_HAS_CLIENTI" FromRole="REZERVARI" ToRole="CLIENTI" />
+  </EntityType>
+  <EntityType Name="SERVICII_SUPLIMENTARE">
+    <Key>
+      <PropertyRef Name="IDSERVICIU" />
+    </Key>
+    <Property Name="IDSERVICIU" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIERE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PRET" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DISPONIBILITATE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.UNITATI_HAS_SERVICII" FromRole="SERVICII_SUPLIMENTARE" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="TIPURI_UNITATI_DE_CAZARE">
+    <Key>
+      <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+    </Key>
+    <Property Name="IDTIPURIUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DENUMIRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIERE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UNITATI_DE_CAZARE" Relationship="Self.SYS_C007083" FromRole="TIPURI_UNITATI_DE_CAZARE" ToRole="UNITATI_DE_CAZARE" />
+  </EntityType>
+  <EntityType Name="UNITATI_DE_CAZARE">
+    <Key>
+      <PropertyRef Name="IDUNITATICAZARE" />
+    </Key>
+    <Property Name="IDUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDCOMPLEXCAZARE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IDTIPURIUNITATICAZARE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="NUME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PRET" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CAMEREs" Relationship="Self.SYS_C007104" FromRole="UNITATI_DE_CAZARE" ToRole="CAMERE" />
+    <NavigationProperty Name="COMPLEX_CAZARE" Relationship="Self.SYS_C007082" FromRole="UNITATI_DE_CAZARE" ToRole="COMPLEX_CAZARE" />
+    <NavigationProperty Name="REVIEWs" Relationship="Self.SYS_C007100" FromRole="UNITATI_DE_CAZARE" ToRole="REVIEW" />
+    <NavigationProperty Name="REZERVARIs" Relationship="Self.SYS_C007095" FromRole="UNITATI_DE_CAZARE" ToRole="REZERVARI" />
+    <NavigationProperty Name="TIPURI_UNITATI_DE_CAZARE" Relationship="Self.SYS_C007083" FromRole="UNITATI_DE_CAZARE" ToRole="TIPURI_UNITATI_DE_CAZARE" />
+    <NavigationProperty Name="FACILITATIs" Relationship="Self.UNITATI_HAS_FACILITATI" FromRole="UNITATI_DE_CAZARE" ToRole="FACILITATI" />
+    <NavigationProperty Name="SERVICII_SUPLIMENTARE" Relationship="Self.UNITATI_HAS_SERVICII" FromRole="UNITATI_DE_CAZARE" ToRole="SERVICII_SUPLIMENTARE" />
+  </EntityType>
+  <Association Name="SYS_C007104">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="CAMERE" Type="Self.CAMERE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="CAMERE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007101">
+    <End Role="CLIENTI" Type="Self.CLIENTI" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTI">
+        <PropertyRef Name="IDCLIENT" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="IDCLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007082">
+    <End Role="COMPLEX_CAZARE" Type="Self.COMPLEX_CAZARE" Multiplicity="0..1" />
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPLEX_CAZARE">
+        <PropertyRef Name="IDCOMPLEXCAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDCOMPLEXCAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007100">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007095">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="REZERVARI" Type="Self.REZERVARI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="REZERVARI">
+        <PropertyRef Name="IDUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007083">
+    <End Role="TIPURI_UNITATI_DE_CAZARE" Type="Self.TIPURI_UNITATI_DE_CAZARE" Multiplicity="0..1" />
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPURI_UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+      </Principal>
+      <Dependent Role="UNITATI_DE_CAZARE">
+        <PropertyRef Name="IDTIPURIUNITATICAZARE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REZERVARI_HAS_CLIENTI">
+    <End Role="REZERVARI" Type="Self.REZERVARI" Multiplicity="*" />
+    <End Role="CLIENTI" Type="Self.CLIENTI" Multiplicity="*" />
+  </Association>
+  <Association Name="UNITATI_HAS_FACILITATI">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <End Role="FACILITATI" Type="Self.FACILITATI" Multiplicity="*" />
+  </Association>
+  <Association Name="UNITATI_HAS_SERVICII">
+    <End Role="UNITATI_DE_CAZARE" Type="Self.UNITATI_DE_CAZARE" Multiplicity="*" />
+    <End Role="SERVICII_SUPLIMENTARE" Type="Self.SERVICII_SUPLIMENTARE" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ProiectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CAMEREs" EntityType="Self.CAMERE" />
+    <EntitySet Name="CLIENTIs" EntityType="Self.CLIENTI" />
+    <EntitySet Name="COMPLEX_CAZARE" EntityType="Self.COMPLEX_CAZARE" />
+    <EntitySet Name="FACILITATIs" EntityType="Self.FACILITATI" />
+    <EntitySet Name="REVIEWs" EntityType="Self.REVIEW" />
+    <EntitySet Name="REZERVARIs" EntityType="Self.REZERVARI" />
+    <EntitySet Name="SERVICII_SUPLIMENTARE" EntityType="Self.SERVICII_SUPLIMENTARE" />
+    <EntitySet Name="TIPURI_UNITATI_DE_CAZARE" EntityType="Self.TIPURI_UNITATI_DE_CAZARE" />
+    <EntitySet Name="UNITATI_DE_CAZARE" EntityType="Self.UNITATI_DE_CAZARE" />
+    <AssociationSet Name="SYS_C007104" Association="Self.SYS_C007104">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="CAMERE" EntitySet="CAMEREs" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007101" Association="Self.SYS_C007101">
+      <End Role="CLIENTI" EntitySet="CLIENTIs" />
+      <End Role="REVIEW" EntitySet="REVIEWs" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007082" Association="Self.SYS_C007082">
+      <End Role="COMPLEX_CAZARE" EntitySet="COMPLEX_CAZARE" />
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007100" Association="Self.SYS_C007100">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="REVIEW" EntitySet="REVIEWs" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007095" Association="Self.SYS_C007095">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="REZERVARI" EntitySet="REZERVARIs" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007083" Association="Self.SYS_C007083">
+      <End Role="TIPURI_UNITATI_DE_CAZARE" EntitySet="TIPURI_UNITATI_DE_CAZARE" />
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+    </AssociationSet>
+    <AssociationSet Name="REZERVARI_HAS_CLIENTI" Association="Self.REZERVARI_HAS_CLIENTI">
+      <End Role="REZERVARI" EntitySet="REZERVARIs" />
+      <End Role="CLIENTI" EntitySet="CLIENTIs" />
+    </AssociationSet>
+    <AssociationSet Name="UNITATI_HAS_FACILITATI" Association="Self.UNITATI_HAS_FACILITATI">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="FACILITATI" EntitySet="FACILITATIs" />
+    </AssociationSet>
+    <AssociationSet Name="UNITATI_HAS_SERVICII" Association="Self.UNITATI_HAS_SERVICII">
+      <End Role="UNITATI_DE_CAZARE" EntitySet="UNITATI_DE_CAZARE" />
+      <End Role="SERVICII_SUPLIMENTARE" EntitySet="SERVICII_SUPLIMENTARE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

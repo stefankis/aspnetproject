@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3708ff55b1a4dcaaac395be26b6e64c" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="ProiectModel.CAMERE" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.CLIENTI" Width="1.5" PointX="11.125" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.COMPLEX_CAZARE" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.FACILITATI" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.REVIEW" Width="1.5" PointX="9.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.REZERVARI" Width="1.5" PointX="8" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.SERVICII_SUPLIMENTARE" Width="1.5" PointX="5.875" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.TIPURI_UNITATI_DE_CAZARE" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectModel.UNITATI_DE_CAZARE" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="ProiectModel.SYS_C007104" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.SYS_C007101" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.SYS_C007082" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.SYS_C007100" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.SYS_C007095" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.SYS_C007083" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.REZERVARI_HAS_CLIENTI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.UNITATI_HAS_FACILITATI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectModel.UNITATI_HAS_SERVICII" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
